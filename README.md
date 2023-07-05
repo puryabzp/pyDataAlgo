@@ -51,7 +51,7 @@ Each algorithm module includes a detailed explanation, step-by-step algorithm de
 
 ## Contributing
 
-Contributions to this repository are welcome! If you have any improvements, bug fixes, or additional data structures and algorithms to contribute, please follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+Contributions to this repository are welcome! If you have any improvements, bug fixes, or additional data structures and algorithms to contribute, please let me know!.
 
 ## License
 
