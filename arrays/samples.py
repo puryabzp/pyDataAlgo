@@ -1,6 +1,11 @@
-from array import *
-# Creating an array
-arr = array("i",[1, 2, 3, 4, 5])
+# Import the 'array' class from the 'array' module
+from array import array
+
+# Create an array of signed integers ('i') and initialize it with values
+# The 'i' type code represents signed integers
+# The array will contain the elements: 1, 2, 3, 4, and 5
+arr = array('i', [1, 2, 3, 4, 5])
+
 
 # Insertion (Append)
 arr.append(6)  # Appending element 6 to the end
