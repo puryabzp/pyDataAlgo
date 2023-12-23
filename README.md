@@ -13,7 +13,10 @@ Welcome to PyDataAlgo, a comprehensive guide designed to illuminate the intricac
   * [Section 7: Exploring Arrays in Python: Part 1](#section-7-exploring-arrays-in-python-part-1)
   * [Section 8: Exploring Arrays in Python: Part 2](#section-8-exploring-arrays-in-python-part-2)
   * [Section 9: Explore the dynamic nature of lists](#section-9-explore-the-dynamic-nature-of-lists)
+  * [Section 10: Mastering Python Dictionaries](#section-10-mastering-python-dictionaries)
 
+
+Section 10: Mastering Python Dictionaries
 
 ## Section 1: Understanding Data Structures in Python
 
