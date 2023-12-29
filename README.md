@@ -1,4 +1,4 @@
-![](img1.png)
+![](img-1.png)
 # PyDataAlgo
 Welcome to PyDataAlgo, a comprehensive guide designed to illuminate the intricacies of data structures and algorithms in Python. Whether you're a student, software engineer, or data scientist, this resource aims to bolster your understanding of the foundational elements that are crucial in writing efficient and effective code. Dive into an exploration of primitive and complex data structures, unpack common and advanced algorithmic strategies, and master the concepts that underpin computational problem-solving.
 
