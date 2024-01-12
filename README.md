@@ -17,6 +17,7 @@ Welcome to PyDataAlgo, a comprehensive guide designed to illuminate the intricac
   * [Section 10: Mastering Python Dictionaries](#section-10-mastering-python-dictionaries)
   * [Section 11: Delving into Python Tuples](#section-11-delving-into-python-tuples)
   * [Section 12: Understanding Python Linked Lists](#section-12-understanding-python-linked-lists)
+  * [Section 13: Dive into Singly Linked Lists](#section-13-dive-into-singly-linked-lists)  
 
 
 Section 10: Mastering Python Dictionaries
@@ -1314,3 +1315,288 @@ When you create a linked list, its nodes are not stored in consecutive memory lo
 3. **Memory Utilization**: Random allocation allows for more efficient use of memory. Since nodes are allocated space only when they are added, a linked list can manage memory more flexibly, especially in scenarios where the number of elements can vary dramatically.
 
 4. **No Memory Wastage**: In an array, you often allocate more memory than necessary to account for potential growth, which can lead to wasted space if that growth doesn't occur. In linked lists, you use exactly as much memory as you need for the current number of nodes.
+
+## Section 13: Dive into Singly Linked Lists
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20220816144425/LLdrawio.png)
+***images from https://www.geeksforgeeks.org/data-structures/linked-list/singly-linked-list/***
+
+
+### Building a Singly Linked List: A Step-by-Step Guide:
+A singly linked list is a type of data structure used in computer science to organize and store data. It consists of a sequence of nodes, each containing data and a reference (or link) to the next node in the sequence. Here's a simple overview of how to create a singly linked list in three steps:
+
+1. **Create Head Node and Initialize with Null**: The first step is to create a head node for the linked list. This head node acts as the starting point of the list and is initially set to null, indicating that the list is empty.
+
+2. **Create a Blank Node and Assign Value and Reference**: Next, create a new node that will hold the data. Assign a value to this node and set its next reference to null. This indicates that this node is currently the last node in the list.
+
+3. **Link Head and Tail with This Node**: If the head node is null (meaning the list is empty), the new node becomes the head of the list. Otherwise, traverse the list from the head until you reach the last node, and then link the last node's next reference to the new node. This adds the new node to the end of the list.
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data  # O(1), constant time for assignment
+        self.next = None  # O(1), constant time for assignment
+
+class SLinkedList:
+    def __init__(self):
+        self.head = None  # O(1), constant time for assignment
+        self.tail = None  # O(1), constant time for assignment
+
+    def append(self, node):
+        if not self.head:  # O(1), constant time for checking condition
+            self.head = node  # O(1), constant time for assignment
+            self.tail = node  # O(1), constant time for assignment
+        else:
+            self.tail.next = node  # O(1), constant time for assignment
+            self.tail = node       # O(1), constant time for assignment
+
+# Creating nodes
+node1 = Node(1)  # O(1), constant time for Node creation
+node2 = Node(2)  # O(1), constant time for Node creation
+
+# Creating the singly linked list
+s_linked_list = SLinkedList()  # O(1), constant time for SLinkedList creation
+
+# Appending nodes
+s_linked_list.append(node1)  # O(1), constant time for appending first node
+s_linked_list.append(node2)  # O(1), constant time for appending second node
+```
+### Insertion to Singly Linked List:
+In a singly linked list, there are three primary forms of insertion:
+
+**Insertion at the Beginning**:
+
+![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist_insert_at_start.png)
+
+***images from https://www.geeksforgeeks.org/insertion-in-linked-list/***
+This involves adding a new node as the first node of the list. The new node's next pointer is set to the current head of the list, and then the head pointer is updated to point to the new node.
+
+**Insertion at the End**:
+
+![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist_insert_last.png)
+
+***images from https://www.geeksforgeeks.org/insertion-in-linked-list/***
+
+This involves appending a new node to the end of the list. If the list is empty, the new node becomes the head; otherwise, the new node is set as the next node of the current tail, and the tail pointer is updated.
+
+**Insertion at a Specific Position**:
+
+![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist_insert_middle.png)
+
+***images from https://www.geeksforgeeks.org/insertion-in-linked-list/***
+
+
+ This involves inserting a new node at a specified position in the list. It requires traversing the list to the point of insertion, adjusting the next pointers of the adjacent nodes to include the new node.
+
+**Here's how you can implement these three forms of insertion in Python**:
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, new_data, position):
+        new_node = Node(new_data)
+
+        # Insertion at the beginning
+        if position == 0:
+            new_node.next = self.head
+            self.head = new_node
+
+        # Insertion at a specific position or at the end
+        else:
+            current = self.head
+            # Special case for an empty list or inserting at the end
+            if not current or position == 1:
+                if not current:
+                    # If list is empty, new node becomes the head
+                    self.head = new_node
+                else:
+                    # If inserting at the end, find the last node
+                    while current.next:
+                        current = current.next
+                    current.next = new_node
+                return
+
+            # Find the position to insert
+            for _ in range(position - 1):
+                if current.next is None:
+                    raise ValueError("Position is greater than the length of the list.")
+                current = current.next
+
+            new_node.next = current.next
+            current.next = new_node
+
+# Example usage
+sll = SLinkedList()
+sll.insert(3, 0)   # Insert 3 at the beginning
+sll.insert(4, 1)   # Insert 4 at the end
+sll.insert(2, 2)   # Insert 2 at position 2
+
+```
+### Traversal Of Singly Linked List:
+Traversal of a singly linked list involves sequentially going through each node of the list, starting from the head node and continuing until the end of the list is reached (usually marked by a `None` reference). This process is typically used for operations like displaying the contents of the list, searching for a value, or applying a function to each element.
+
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Existing Our Methods...
+
+    def traverse(self):
+        if self.head is None:
+            print("Singly linked list does not exist.")
+            return
+
+        current = self.head
+        while current:
+            print(current.data, end=" ")
+            current = current.next
+
+# Example usage
+sll = SLinkedList()
+# Add nodes to sll
+sll.traverse()  # Outputs: Singly linked list does not exist.
+```
+
+In this implementation, the `traverse` method starts from the `head` and prints the data of each node until it reaches the end of the list. If the `head` is `None`, it indicates that the list is empty.
+
+**Time Complexity:**
+- The time complexity of the `traverse` method is O(n), where n is the number of nodes in the linked list. This is because the method must visit each node exactly once to print its value. The operation is linear in the size of the list.
+
+### Search for a value in Singly Linked List:
+Searching for a value in a singly linked list involves traversing the list from the head to the end, comparing each node's data with the target value. If a node with the target value is found, the search is successful; otherwise, it continues until the end of the list is reached.
+
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Existing Our Methods...
+
+    def search(self, value):
+        if self.head is None:
+            print("Singly linked list does not exist.")
+            return False
+
+        current = self.head
+        while current:
+            if current.data == value:
+                return True
+            current = current.next
+        return False
+
+# Example usage
+sll = SLinkedList()
+# Assuming you have added some nodes to sll
+print(sll.search(5))  # Outputs: False if 5 is not in the list or True if it is
+```
+
+In this implementation, the `search` method iterates over each node, checking if the node's data matches the `value`. If a match is found, the method returns `True`. If the list is empty or the end of the list is reached without finding the value, it returns `False`.
+
+**Time Complexity:**
+- The time complexity of the `search` method is O(n), where n is the number of nodes in the list. In the worst case, the method has to traverse the entire list to find the value or determine that the value is not present. This makes the search operation linear in the size of the list.
+
+###  Node Deletion Methods in a Singly Linked List
+Deletion of a node from a singly linked list can be categorized into three types:
+
+**Deletion at the Beginning**:
+
+Removing the first node of the list. The head pointer is updated to the second node.
+
+**Deletion at the End**:
+
+Removing the last node of the list. This involves traversing to the second-last node and updating its next pointer to `None`.
+
+**Deletion of a Specific Node**:
+
+This requires finding the specific node to be deleted (typically by value) and removing it from the list. It involves linking the previous node of the target node directly to the next node of the target node.
+
+**Here Is of It's Implementation:**
+
+
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Existing Our Methods...
+
+    def delete_node(self, position=None, key=None):
+        if self.head is None:
+            print("Singly linked list does not exist.")
+            return
+
+        temp = self.head
+
+        # Deletion at the beginning
+        if position == 0:
+            self.head = temp.next
+            temp = None
+            return
+
+        # Deletion of a specific node by key
+        if key is not None:
+            if temp is not None and temp.data == key:
+                self.head = temp.next
+                temp = None
+                return
+            while temp is not None:
+                if temp.data == key:
+                    break
+                prev = temp
+                temp = temp.next
+            if temp is None:
+                return
+            prev.next = temp.next
+            temp = None
+            return
+
+        # Deletion at the end or a specific position
+        if position is not None:
+            for i in range(position - 1):
+                temp = temp.next
+                if temp is None:
+                    break
+            if temp is None or temp.next is None:
+                return
+            next = temp.next.next
+            temp.next = None
+            temp.next = next
+
+# Example usage
+sll = SLinkedList()
+# Assuming you have added some nodes to sll
+sll.delete_node(position=0)  # Delete the first node
+sll.delete_node(key=3)       # Delete node with data 3
+sll.delete_node(position=2)  # Delete node at position 2
+```
+
+**Time Complexity:**
+- **Deletion at the Beginning**: O(1), as it involves only a few pointer updates.
+- **Deletion at the End**: O(n), where n is the number of nodes in the list, since it requires traversing to the end of the list.
+- **Deletion of a Specific Node by Key**: O(n), as it potentially requires traversing the entire list to find the node to be deleted.
+- **Deletion at a Specific Position**: O(n), similar to deletion by key, it might require traversing up to the position of the node to be deleted.
