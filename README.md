@@ -1368,6 +1368,7 @@ In a singly linked list, there are three primary forms of insertion:
 ![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist_insert_at_start.png)
 
 ***images from https://www.geeksforgeeks.org/insertion-in-linked-list/***
+
 This involves adding a new node as the first node of the list. The new node's next pointer is set to the current head of the list, and then the head pointer is updated to point to the new node.
 
 **Insertion at the End**:
